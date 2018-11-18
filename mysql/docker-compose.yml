@@ -1,0 +1,14 @@
+mysql-node1:
+  image: 'mysql/mysql-server:5.7'
+  restart: always
+  container_name: mysql-node1
+  volumes:
+  - ./conf/mysql-node1:/etc/mysql/:ro
+  - ./data/node1:/var/lib/mysql:rw
+  ulimits:
+    nproc: 65535
+  hostname: mysql
+  ports:
+  - "3306:3306"
+  environment:
+  - MYSQL_ROOT_PASSWORD=111111

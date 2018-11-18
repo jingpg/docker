@@ -1,0 +1,14 @@
+ethereum-node:
+  image: 'ethereum/client-go'
+  restart: always
+  container_name: ethereum-node
+  volumes:
+  - /home/geth/:/root:rw
+  ulimits: # 操作系统限制
+    nproc: 65535
+  hostname: ethereum-node
+  ports:
+  - "30303:30303"
+  - "30303:30303/udp"
+  - "8545:8545"
+  command: --datadir /root/ethdata --txpool.lifetime "0h10m0s" --cache=2048 --maxpeers 100 --gasprice "61000000000" --rpc --rpccorsdomain "*" --rpcaddr 0.0.0.0

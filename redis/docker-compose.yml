@@ -1,0 +1,13 @@
+redis-node1:
+  image: 'redis:5.0.0'
+  restart: always
+  container_name: redis-node1
+  volumes:
+  - ./conf/redis.conf:/etc/redis.conf:ro
+  - ./data:/data:rw
+  ulimits: # 操作系统限制
+    nproc: 65535
+  hostname: redis
+  ports:
+  - "6379:6379"
+  command: ["redis-server", "/etc/redis.conf"]
